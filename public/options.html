@@ -8,28 +8,102 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
+        overflow: auto;
+        padding: 20px;
       }
 
       .container {
         display: flex;
         align-items: center;
         margin-bottom: 16px;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .section {
+        width: 100%;
+        max-width: 1000px;
+        margin-bottom: 24px;
       }
 
       label {
         margin-right: 8px;
+        min-width: 150px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 200px;
+        margin-top: 8px;
+        font-family: monospace;
+      }
+
+      input, select {
+        flex: 1;
+        padding: 4px;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .button-group button {
+        margin-bottom: 8px;
+      }
+
+      button {
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+
+      #status {
+        margin: 16px 0;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <label for="ollama_server">ollama server address:</label>
-      <input name="ollama_server" id="ollama_server" />
+    <div class="section">
+      <h2>Server Settings</h2>
+      <div class="container">
+        <label for="ollama_server">ollama server address:</label>
+        <input name="ollama_server" id="ollama_server" />
+      </div>
+      <div class="container">
+        <button id="save">Save Server Settings</button>
+        <div id="status" style="margin-left: 16px">Options saved.</div>
+      </div>
     </div>
 
-    <div id="status"></div>
-    <button id="save">Save</button>
+    <div class="section">
+      <h2>Code Review Guidelines</h2>
+      <div class="container">
+        <label for="guidelines-list">Select Guideline:</label>
+        <select id="guidelines-list"></select>
+      </div>
+
+      <div class="container">
+        <label for="guideline-name">Guideline Name:</label>
+        <input type="text" id="guideline-name">
+      </div>
+
+      <div class="container">
+        <label for="guideline-content">Guideline Content:</label>
+        <textarea id="guideline-content"></textarea>
+      </div>
+
+      <div class="button-group">
+        <button id="add-guideline">Add</button>
+        <button id="delete-guideline">Delete</button>
+        <button id="save-guideline">Save</button>
+        <button id="export-guidelines">Export</button>
+        <input type="file" id="import-guidelines" accept=".json" style="display: none;">
+        <button id="import-button">Import</button>
+      </div>
+    </div>
+
     <script src="options.js"></script>
   </body>
 </html>
